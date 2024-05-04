@@ -4,6 +4,7 @@ from django.core.files.storage import FileSystemStorage
 from django.shortcuts import get_object_or_404, render
 from .models import Client, Products, Order
 from .forms import ImageForm, ProductForm
+from django.utils import timezone
 
 logger = logging.getLogger(__name__)
 
@@ -23,8 +24,8 @@ def receive_orders(request, pk_cust):
 def orders_story(request, pk_cust, days):
     customer = Client.objects.filter(pk=pk_cust).first()
     ord = Order.objects.filter(client=pk_cust)
-    my_date = datetime.now() - timedelta(days=days)
-    order_list = ord.filter(created__gte=my_date, created__lte=datetime.now())
+    my_date = timezone.now() - timedelta(days=days)
+    order_list = ord.filter(created__gte=my_date, created__lte=timezone.now())
     prods_dict = {}
     for order in order_list:
         prods = order.orders.all()

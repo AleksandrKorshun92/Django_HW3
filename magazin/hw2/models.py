@@ -34,7 +34,7 @@ class Order(models.Model):
     client = models.ForeignKey(Client, on_delete=models.CASCADE, related_name="orders")
     orders = models.ManyToManyField(Products, related_name="in_order")
     total_price = models.DecimalField(max_digits=10, decimal_places=2)
-    created = models.DateTimeField(auto_now_add=True)
+    created = models.DateTimeField()
     updated = models.DateTimeField(auto_now=True)
 
     def __str__(self):

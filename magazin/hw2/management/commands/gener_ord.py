@@ -1,3 +1,5 @@
+from datetime import timedelta
+from django.utils import timezone
 from typing import Any
 from django.core.management.base import BaseCommand, CommandParser
 from hw2.models import Client, Products, Order
@@ -38,7 +40,8 @@ class Command(BaseCommand):
             customer = Client.objects.filter(pk=randint(1, count_customers + 1)).first()
             product = Products.objects.filter(pk=randint(1, count_prods + 1)).first()
             self.stdout.write(f"{product}")
-            order = Order(client=customer, total_price=product.cost())
+            dates=timezone.now() - timedelta(10)
+            order = Order(client=customer, total_price=product.cost(), created=dates)
             order.save()
             order.orders.add(product)
 
