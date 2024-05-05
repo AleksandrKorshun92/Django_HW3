@@ -10,7 +10,7 @@ class Client(models.Model):
     register_date = models.DateField(auto_now_add=True)
 
     def __str__(self):
-        return f"Покупатель - {self.name}, эл. почта: {self.email}"
+        return f"Покупатель - {self.name}"
 
 
 class Products(models.Model):
@@ -38,5 +38,5 @@ class Order(models.Model):
     updated = models.DateTimeField(auto_now=True)
 
     def __str__(self):
-        return f"клиент {self.client.name}\nномер заказа {self.id},  стоимость {self.total_price}"
+        return f"номер заказа {self.id}, стоимость {self.total_price}, клиент {self.client.name} "
 

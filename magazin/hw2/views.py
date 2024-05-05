@@ -1,12 +1,19 @@
 from datetime import datetime, timedelta
 import logging
 from django.core.files.storage import FileSystemStorage
+from django.http import HttpResponse
 from django.shortcuts import get_object_or_404, render
 from .models import Client, Products, Order
 from .forms import ImageForm, ProductForm
 from django.utils import timezone
 
 logger = logging.getLogger(__name__)
+
+def index(request):
+    logging.info('Заход на главную страницу')
+    context = {"title": "Главная страница"}
+    return render(request, "base.html", context)
+
 
 def receive_orders(request, pk_cust):
     orders = Order.objects.filter(client=pk_cust)

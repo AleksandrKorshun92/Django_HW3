@@ -2,12 +2,14 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>{% block title %} Start {% endblock %} </title>
+    <title>{% block title %} {{title}} {% endblock %} </title>
 </head>
 <body>
     {% block content %}
-        <h1>Мой магазин товаров</h1>
+        <h1>Мой магазин продуктов</h1>
         <p>В этом магазине можно купить много товаро</p>
+        <p>Чтобы узнать заказы пользователя напишите адресной строке orders/"id пользователя"/</p>
+        <p>Чтобы узнать история заказов напишите адресной строке - story/"id пользователя"/"количество дней"/</p>
     {% endblock %}
 
 </body>
